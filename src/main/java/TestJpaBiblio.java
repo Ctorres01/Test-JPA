@@ -5,10 +5,10 @@ import javax.persistence.TypedQuery;
 import dev.biblio.Emprunt;
 import dev.biblio.Livre;
 
-public class TestJpa {
+public class TestJpaBiblio {
 
 	public static void main(String[] args) {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("test_jpa");
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("test_jpa_biblio");
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
 		/*Récupération d'un lire à partir de son titre
@@ -19,7 +19,6 @@ public class TestJpa {
 		
 		//Récupération des livres à partir d'un emprunt
 		TypedQuery<Emprunt> query2 = em.createQuery("SELECT e FROM Emprunt e WHERE e.id =:id", Emprunt.class).setParameter("id", 2L);
-		System.out.println(query2.getResultList().get(0).getLivres().size());
 		for(Livre livre : query2.getResultList().get(0).getLivres()) {
 			System.out.println(livre.getTitle()+" de "+livre.getAuthor());
 		}
@@ -29,7 +28,6 @@ public class TestJpa {
 		for(Emprunt emprunt : query3.getResultList()) {
 			System.out.println("Emprunt numéro "+emprunt.getId() + " datant du "+ emprunt.getBeginningDate()+" au nom de "+emprunt.getClient().getLastName());
 		}
-		
 		
 		em.close();
 		entityManagerFactory.close();

@@ -16,8 +16,9 @@ import javax.persistence.ManyToOne;
 @Entity
 @Table(name="EMPRUNT")
 public class Emprunt {
+	
 	@Id
-	private long id;
+	private int id;
 	
 	@Column(name = "date_debut", length = 30, nullable = false)
 	private LocalDate beginningDate;
@@ -39,11 +40,11 @@ public class Emprunt {
 	)
 	private List<Livre> livres;
 	
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
